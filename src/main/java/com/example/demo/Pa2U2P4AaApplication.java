@@ -1,25 +1,26 @@
 package com.example.demo;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.example.demo.modelo.CuentaBancaria;
-import com.example.demo.service.ICuentaBancariaService;
-import com.example.demo.service.IEstudianteService;
+import com.example.demo.modelo.Ciudadano;
+import com.example.demo.modelo.Empleado;
+import com.example.demo.service.CiudadanoService;
+import com.example.demo.service.EmpleadoService;
 
 @SpringBootApplication
 public class Pa2U2P4AaApplication implements CommandLineRunner{
 	
 	@Autowired
-	private IEstudianteService estudianteService;
+	private CiudadanoService ciudadanoService;
 	
 	@Autowired
-	private ICuentaBancariaService bancariaService;
+	private EmpleadoService empleadoService;
+	
 
 	public static void main(String[] args) {
 		SpringApplication.run(Pa2U2P4AaApplication.class, args);
@@ -29,23 +30,21 @@ public class Pa2U2P4AaApplication implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 		
-		CuentaBancaria cta=new CuentaBancaria();
-		cta.setCedulaPropietario("1727193847");
-		cta.setNumero("1234");
-		cta.setSaldo(new BigDecimal(100));
-		cta.setTipo("Ahorro");
+		Empleado empleado = new Empleado();
+		Ciudadano ciudadano = new Ciudadano();
+
+		ciudadano.setApellido("Andrango");
+		ciudadano.setNombre("Alex");
+		ciudadano.setCedula("1724693740");
+	
+		empleado.setCargo("Coordinador");
+		empleado.setSueldo(new BigDecimal(400));
 		
-		this.bancariaService.apertura(cta);
-		
-		
-		CuentaBancaria ctaEn=this.bancariaService.consultar(2);
-		ctaEn.setCedulaPropietario("1714458237");
-		this.bancariaService.modificar(ctaEn);
-		
-		
-		CuentaBancaria ctaSaldo=this.bancariaService.consultar(3);
-		System.out.println("El saldo de la cuenta con id 3 es: "+ctaSaldo.getSaldo());
-		
+		ciudadano.setEmpleado(empleado);
+	    empleado.setCiudadano(ciudadano);
+	    
+	    this.ciudadanoService.registrar(ciudadano);
+	    //this.empleadoService.registrar(empleado);
 
 	}
 
