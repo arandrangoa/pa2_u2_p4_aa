@@ -2,6 +2,7 @@ package com.example.demo.modelo;
 
 import java.util.Set;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -29,9 +30,7 @@ public class Libro {
 	@Column(name="libr_editorial")
 	private String editorial;
 	
-	@ManyToMany
-	@JoinTable(name = "autor_libro",joinColumns = @JoinColumn(name="auli_id_libro"),
-	inverseJoinColumns =@JoinColumn(name="auli_id_autor"))
+	@ManyToMany(mappedBy ="libros",cascade = CascadeType.ALL)
 	private Set<Autor> autores;
 
 	//SET Y GET

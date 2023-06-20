@@ -27,7 +27,7 @@ import com.example.demo.service.ILibroService;
 public class Pa2U2P4AaApplication implements CommandLineRunner{
 	
 	@Autowired
-	private IHotelService hotelService;
+	private ILibroService iLibroService;
 	
 
 	public static void main(String[] args) {
@@ -38,30 +38,34 @@ public class Pa2U2P4AaApplication implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 		
+		Set<Libro> libros=new HashSet<>();
 		
-
+		
+		Libro l1=new Libro();
+		l1.setEditorial("Dilipa");
+		l1.setTitulo("Dejame que te cuente");
+		
+		libros.add(l1);
+		
+		Autor a1=new Autor();
+		a1.setNombre("Alex");
+		a1.setApellido("Andrango");
+		a1.setLibros(libros);
+		
+		Autor a2=new Autor();
+		a2.setApellido("Muzo");
+		a2.setNombre("Belen");
+		a2.setLibros(libros);
+		
+		Set<Autor> autores=new HashSet<>();
+		autores.add(a1);
+		autores.add(a2);
+		l1.setAutores(autores);
 		
 		
-		Hotel hotel=new Hotel();
-		hotel.setDireccion("Av.Amazonas");
-		hotel.setNombre("Trivago");
+	
+		this.iLibroService.agregar(l1);
 		
-		Habitacion hab1=new Habitacion();
-		hab1.setNumero("A1");
-		hab1.setValor(new BigDecimal(50));
-		hab1.setHotel(hotel);
-		Habitacion hab2=new Habitacion();
-		hab2.setNumero("A2");
-		hab2.setValor(new BigDecimal(40));
-		hab2.setHotel(hotel);
-		
-		List<Habitacion> habitaciones=new ArrayList<>();
-		habitaciones.add(hab1);
-		habitaciones.add(hab2);
-		
-		hotel.setHabitaciones(habitaciones);
-		
-		this.hotelService.insertar(hotel);
 		
 		
 

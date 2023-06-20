@@ -8,6 +8,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
@@ -28,7 +30,9 @@ public class Autor {
 	@Column(name="auto_apellido")
 	private String apellido;
 	
-	@ManyToMany(mappedBy ="autores",cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "libro_autor",joinColumns = @JoinColumn(name="auli_id_libro"),
+	inverseJoinColumns =@JoinColumn(name="auli_id_autor"))
 	private Set<Libro> libros;
 
 	
