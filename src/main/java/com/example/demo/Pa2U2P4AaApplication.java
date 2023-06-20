@@ -1,7 +1,9 @@
 package com.example.demo;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,15 +20,14 @@ import com.example.demo.modelo.Libro;
 import com.example.demo.service.CiudadanoService;
 import com.example.demo.service.EmpleadoService;
 import com.example.demo.service.IAutorService;
+import com.example.demo.service.IHotelService;
 import com.example.demo.service.ILibroService;
 
 @SpringBootApplication
 public class Pa2U2P4AaApplication implements CommandLineRunner{
 	
 	@Autowired
-	private CiudadanoService ciudadanoService;
-	@Autowired
-	private EmpleadoService empleadoService;
+	private IHotelService hotelService;
 	
 
 	public static void main(String[] args) {
@@ -38,18 +39,32 @@ public class Pa2U2P4AaApplication implements CommandLineRunner{
 		// TODO Auto-generated method stub
 		
 		
-	Ciudadano ciu=new Ciudadano();
-	ciu.setApellido("Muzo");
-	ciu.setCedula("1727193847");
-	ciu.setNombre("Belen");
-	
-	
-	Empleado empl=new Empleado();
-	empl.setCargo("Profesora");
-	empl.setSueldo(new BigDecimal(1000));
-	empl.setCiudadano(ciu);
-	
-	this.empleadoService.guardar(empl);
+
+		
+		
+		Hotel hotel=new Hotel();
+		hotel.setDireccion("Av.Amazonas");
+		hotel.setNombre("Trivago");
+		
+		Habitacion hab1=new Habitacion();
+		hab1.setNumero("A1");
+		hab1.setValor(new BigDecimal(50));
+		hab1.setHotel(hotel);
+		Habitacion hab2=new Habitacion();
+		hab2.setNumero("A2");
+		hab2.setValor(new BigDecimal(40));
+		hab2.setHotel(hotel);
+		
+		List<Habitacion> habitaciones=new ArrayList<>();
+		habitaciones.add(hab1);
+		habitaciones.add(hab2);
+		
+		hotel.setHabitaciones(habitaciones);
+		
+		this.hotelService.insertar(hotel);
+		
+		
+
 	
 	
 	

@@ -1,18 +1,18 @@
 package com.example.demo.repository;
 
-import org.apache.logging.log4j.util.PerformanceSensitive;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.modelo.Hotel;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 
 @Repository
 @Transactional
 public class HotelRepoImpl implements IhotelRepo{
 	
-	@PerformanceSensitive
+	@PersistenceContext
 	private EntityManager entityManager;
 
 	@Override
