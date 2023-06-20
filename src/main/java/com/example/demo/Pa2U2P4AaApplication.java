@@ -1,25 +1,24 @@
 package com.example.demo;
 
-import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.example.demo.modelo.Ciudadano;
-import com.example.demo.modelo.Empleado;
-import com.example.demo.service.CiudadanoService;
-import com.example.demo.service.EmpleadoService;
+import com.example.demo.modelo.Autor;
+import com.example.demo.modelo.Libro;
+import com.example.demo.service.IAutorService;
+import com.example.demo.service.ILibroService;
 
 @SpringBootApplication
 public class Pa2U2P4AaApplication implements CommandLineRunner{
 	
 	@Autowired
-	private CiudadanoService ciudadanoService;
+	private IAutorService autorService;
 	
-	@Autowired
-	private EmpleadoService empleadoService;
 	
 
 	public static void main(String[] args) {
@@ -30,21 +29,28 @@ public class Pa2U2P4AaApplication implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 		
-		Empleado empleado = new Empleado();
-		Ciudadano ciudadano = new Ciudadano();
-
-		ciudadano.setApellido("Andrango");
-		ciudadano.setNombre("Alex");
-		ciudadano.setCedula("1724693740");
-	
-		empleado.setCargo("Coordinador");
-		empleado.setSueldo(new BigDecimal(400));
+		Libro l1=new Libro();
 		
-		ciudadano.setEmpleado(empleado);
-	    empleado.setCiudadano(ciudadano);
-	    
-	    this.ciudadanoService.registrar(ciudadano);
-	    //this.empleadoService.registrar(empleado);
+		Libro l2=new Libro();
+		
+		Set<Libro> libros=new HashSet<>();
+		libros.add(l2);
+		libros.add(l1);
+		
+		Set<Autor> autores=new HashSet<>();
+		
+		
+		
+		Autor autor1=new Autor();
+		autor1.setApellido("Muzo");
+		autor1.setNombre("Belen");
+		autor1.setLibros(libros);
+		
+		autores.add(autor1);
+		
+		l1.setAutores(autores);
+		
+		this.autorService.agregar(autor1);
 
 	}
 
