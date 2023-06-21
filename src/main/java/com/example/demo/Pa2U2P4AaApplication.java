@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -8,16 +9,20 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.example.demo.modelo.Alumno;
 import com.example.demo.modelo.Autor;
 import com.example.demo.modelo.Libro;
+import com.example.demo.modelo.Materia;
+import com.example.demo.modelo.Matricula;
 import com.example.demo.service.IAutorService;
 import com.example.demo.service.ILibroService;
+import com.example.demo.service.IMatriculaService;
 
 @SpringBootApplication
 public class Pa2U2P4AaApplication implements CommandLineRunner{
 	
 	@Autowired
-	private IAutorService autorService;
+	private IMatriculaService iMatriculaService;
 	
 	
 
@@ -29,28 +34,21 @@ public class Pa2U2P4AaApplication implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 		
-		Libro l1=new Libro();
+		Alumno a1=new Alumno();
+		a1.setNombre("Alex");
 		
-		Libro l2=new Libro();
-		
-		Set<Libro> libros=new HashSet<>();
-		libros.add(l2);
-		libros.add(l1);
-		
-		Set<Autor> autores=new HashSet<>();
+		Materia m1=new Materia();
+		m1.setNombre("Programacion Avanzada");
 		
 		
+		Matricula matri=new Matricula();
+		matri.setFechaMatricula(LocalDateTime.now());
+		matri.setAlumno(a1);
+		matri.setMateria(m1);
+		matri.setNumero("M1");
 		
-		Autor autor1=new Autor();
-		autor1.setApellido("Muzo");
-		autor1.setNombre("Belen");
-		autor1.setLibros(libros);
 		
-		autores.add(autor1);
-		
-		l1.setAutores(autores);
-		
-		this.autorService.agregar(autor1);
+		this.iMatriculaService.insertar(matri);
 
 	}
 
