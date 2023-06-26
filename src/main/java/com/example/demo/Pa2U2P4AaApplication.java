@@ -1,28 +1,22 @@
 package com.example.demo;
 
-import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.example.demo.modelo.Alumno;
-import com.example.demo.modelo.Autor;
-import com.example.demo.modelo.Libro;
-import com.example.demo.modelo.Materia;
-import com.example.demo.modelo.Matricula;
-import com.example.demo.service.IAutorService;
-import com.example.demo.service.ILibroService;
-import com.example.demo.service.IMatriculaService;
+import com.example.demo.modelo.Automovil;
+import com.example.demo.modelo.Estudiante;
+import com.example.demo.service.IAutomovilService;
+import com.example.demo.service.IEstudianteService;
 
 @SpringBootApplication
 public class Pa2U2P4AaApplication implements CommandLineRunner{
 	
 	@Autowired
-	private IMatriculaService iMatriculaService;
+	private IAutomovilService automovilService;
 	
 	
 
@@ -34,21 +28,39 @@ public class Pa2U2P4AaApplication implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 		
-		Alumno a1=new Alumno();
-		a1.setNombre("Alex");
+		Automovil a1 = new Automovil();
+		a1.setAnioDeFabricacion("2021");
+		a1.setMarca("Chevrolet");
+		a1.setModelo("Camaro");
+		a1.setPlaca("LBB725");
 		
-		Materia m1=new Materia();
-		m1.setNombre("Programacion Avanzada");
+		//this.automovilService.insertar(a1);
+	
+		System.out.println("///////////////Ejemplo de Query con single result////////////////");
+		Automovil auto = this.automovilService.seleccionarPorPlaca("TCX900");	
+		System.out.println(auto);
 		
 		
-		Matricula matri=new Matricula();
-		matri.setFechaMatricula(LocalDateTime.now());
-		matri.setAlumno(a1);
-		matri.setMateria(m1);
-		matri.setNumero("M1");
+		System.out.println("////////////////Ejemplo de Query con result list///////////////");
+		List<Automovil> autos = this.automovilService.seleccionarListaPorMarca("Chevrolet");
+		
+		for(Automovil au: autos) {
+			System.out.println(au);
+		}
 		
 		
-		this.iMatriculaService.insertar(matri);
+		System.out.println("///////////////////Ejemplo de TypedQuery con single result////////");
+		Automovil auto2 = this.automovilService.seleccionarPorModeloTyped("Sail");
+		System.out.println(auto2);
+		
+		
+		System.out.println("///////////////Ejemplo de TypedQuery con result list////////////////");
+		List<Automovil> autos2 = this.automovilService.seleccionarListaPorModeloTyped("Camaro");
+		
+		for(Automovil au2: autos2) {
+			System.out.println(au2);
+		}
+		
 
 	}
 
