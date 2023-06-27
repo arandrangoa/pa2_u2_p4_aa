@@ -6,12 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
 import com.example.demo.modelo.Automovil;
-import com.example.demo.modelo.Estudiante;
 import com.example.demo.service.IAutomovilService;
-import com.example.demo.service.IEstudianteService;
-
 @SpringBootApplication
 public class Pa2U2P4AaApplication implements CommandLineRunner{
 	

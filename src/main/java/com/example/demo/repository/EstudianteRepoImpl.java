@@ -80,4 +80,12 @@ public class EstudianteRepoImpl implements IEstudianteRepo{
 		return myQuery.getSingleResult();
 	}
 
+	@Override
+	public Estudiante seleccionarPorApellidoNamed(String apellido) {
+		// TODO Auto-generated method stub
+		TypedQuery<Estudiante> myQuery=this.entityManager.createNamedQuery("Estudiante.buscaPorApellido", Estudiante.class);
+		myQuery.setParameter("datoApellido", apellido);	
+		return myQuery.getSingleResult();
+	}
+
 }

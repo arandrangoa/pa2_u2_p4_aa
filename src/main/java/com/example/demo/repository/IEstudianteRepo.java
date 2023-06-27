@@ -23,6 +23,8 @@ public interface IEstudianteRepo {
 	
 	public Estudiante seleccionarPorApellidoTyped(String apellido);
 	
+	public Estudiante seleccionarPorApellidoNamed(String apellido);
+	
 	
 	
 }
