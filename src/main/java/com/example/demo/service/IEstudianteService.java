@@ -21,4 +21,18 @@ public interface IEstudianteService {
 	public Estudiante reportePorApellidoyNombre(String apellido, String nombre);
 	
 	public Estudiante reportePorApellidoTyped(String apellido);
+	
+	public Estudiante seleccionarPorApellidoNamedQuery(String apellido);
+	
+	public Estudiante seleccionarPorApellidoNativeQuery(String apellido);
+	
+	public Estudiante seleccionarPorApellidoNativeQueryNamed(String apellido);
+	
+	
+	public Estudiante buscarPorNombreNamed(String nombre);
+	
+	public Estudiante seleccionarPorNombreNativeQueryNamed(String nombre);
+	
+	
+	public Estudiante seleccionarPorApellidoCriteriaApiQuery(String apellido);
 }
