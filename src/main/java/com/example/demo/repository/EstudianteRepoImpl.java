@@ -159,4 +159,72 @@ public class EstudianteRepoImpl implements IEstudianteRepo{
 		return myQueryFinal.getSingleResult();
 	}
 
+	@Override
+	public Estudiante seleccionarEstudianteDinamico(String nombre, String apellido, Double peso) {
+		// TODO Auto-generated method stub
+		
+		CriteriaBuilder myBuilder=this.entityManager.getCriteriaBuilder();
+		
+		CriteriaQuery<Estudiante> myCriteriaQuery=myBuilder.createQuery(Estudiante.class);
+		
+		Root<Estudiante> myTableFrom=myCriteriaQuery.from(Estudiante.class);
+		
+		//3- >100 e.nombre=? and e.apellido=?
+		//<=100 e.nombre=? or e.apellido=?
+		
+		//e.nombre
+		Predicate pNombre=myBuilder.equal(myTableFrom.get("nombre"), nombre);
+		
+		//e.apellido
+		Predicate pApellido=myBuilder.equal(myTableFrom.get("apellido"), apellido);
+		
+		Predicate predicadoFinal=null;
+		
+		if(peso.compareTo(Double.valueOf(100))<=0){
+			predicadoFinal=myBuilder.or(pNombre, pApellido);
+		}else {
+			predicadoFinal=myBuilder.and(pNombre, pApellido);
+		}
+		
+		//4.-Armamos mi SQL final
+		myCriteriaQuery.select(myTableFrom).where(predicadoFinal);
+		
+		//5.-La ejecucion del Query lo realizamos con TypedQuery
+		TypedQuery<Estudiante> myQueryFinal=this.entityManager.createQuery(myCriteriaQuery);
+		
+		
+		return myQueryFinal.getSingleResult();
+		
+		
+	}
+
+	@Override
+	public int eliminarPorNombre(String nombre) {
+		// TODO Auto-generated method stub
+		
+		//DELETE FROM estudiante where estu_nombre=?
+		//DELETE FROM Estudiante e where e.nombre= :datoNombre
+		
+		Query myQuery=this.entityManager.createQuery("DELETE FROM Estudiante e where e.nombre= :datoNombre");
+		myQuery.setParameter("datoNombre", nombre);
+		return myQuery.executeUpdate();
+		
+	}
+
+	@Override
+	public int actualizarPorApellido(String nombre,String apellido) {
+		// TODO Auto-generated method stub
+		//SQL
+		//UPDATE estudiante SET estu_nombre=? WHERE estu_apellido=?
+		//JPQL
+		//UPDATE Estudiante e SET e.nombre= :datoNombre WHERE e.apllido= :datoApellido
+		
+		
+		Query myQuery=this.entityManager.
+				createQuery("UPDATE Estudiante e SET e.nombre= :datoNombre WHERE e.apellido= :datoApellido");
+		myQuery.setParameter("datoNombre", nombre);
+		myQuery.setParameter("datoApellido", apellido);
+		return myQuery.executeUpdate();
+	}
+
 }
