@@ -1,5 +1,7 @@
 package com.example.demo.service;
 
+import java.time.LocalDate;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +30,12 @@ public class VehiculoServiceImpl implements IVehiculoService{
 	public int actualizarPorMarcaElColor(String color, String marca) {
 		// TODO Auto-generated method stub
 		return this.iVehiculoRepo.actualizarPorMarcaElColor(color, marca);
+	}
+
+	@Override
+	public Vehiculo seleccionarVehiculoPorFechaColorPlaca(LocalDate fechaFabricacion, String color, String placa) {
+		// TODO Auto-generated method stub
+		return this.iVehiculoRepo.seleccionarVehiculoPorFechaColorPlaca(fechaFabricacion, color, placa);
 	}
 
 }

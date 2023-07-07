@@ -1,5 +1,7 @@
 package com.example.demo.repository;
 
+import java.time.LocalDate;
+
 import com.example.demo.modelo.Vehiculo;
 
 public interface IVehiculoRepo {
@@ -10,4 +12,6 @@ public interface IVehiculoRepo {
 	
 	public int actualizarPorMarcaElColor(String color, String marca);
 
+	public Vehiculo seleccionarVehiculoPorFechaColorPlaca(LocalDate fechaFabricacion,String color, String placa);
+	
 }
