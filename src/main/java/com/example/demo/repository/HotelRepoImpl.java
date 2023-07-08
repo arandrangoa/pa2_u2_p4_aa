@@ -6,13 +6,14 @@ import org.springframework.stereotype.Repository;
 import com.example.demo.modelo.Hotel;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 
 @Repository
 @Transactional
 public class HotelRepoImpl implements IhotelRepo{
 	
-	@PerformanceSensitive
+	@PersistenceContext
 	private EntityManager entityManager;
 
 	@Override
@@ -31,6 +32,7 @@ public class HotelRepoImpl implements IhotelRepo{
 	public Hotel buscar(Integer id) {
 		// TODO Auto-generated method stub
 		return this.entityManager.find(Hotel.class, id);
+
 	}
 
 	@Override
@@ -39,5 +41,7 @@ public class HotelRepoImpl implements IhotelRepo{
 		Hotel hotel=this.buscar(id);
 		this.entityManager.remove(hotel);
 	}
+	
+	
 
 }

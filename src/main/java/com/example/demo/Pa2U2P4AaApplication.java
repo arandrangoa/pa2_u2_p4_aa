@@ -1,17 +1,34 @@
 package com.example.demo;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.example.demo.modelo.Estudiante;
+import com.example.demo.modelo.Habitacion;
+import com.example.demo.modelo.Hotel;
+import com.example.demo.modelo.dto.EstudianteDTO;
+import com.example.demo.modelo.dto.MatriculaDTO;
 import com.example.demo.service.IEstudianteService;
+import com.example.demo.service.IHabitacionService;
+import com.example.demo.service.IHotelService;
+import com.example.demo.service.IMatriculaService;
 @SpringBootApplication
 public class Pa2U2P4AaApplication implements CommandLineRunner{
 	
 	@Autowired
 	private IEstudianteService estudianteService;
+	
+	@Autowired
+	private IMatriculaService iMatriculaService;
+	
+	@Autowired
+	private IHotelService hotelService;
+	
+	@Autowired
+	private IHabitacionService habitacionService;
 	
 	
 
@@ -23,28 +40,34 @@ public class Pa2U2P4AaApplication implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 	
-		Estudiante e=new Estudiante();
-		e.setApellido("Santos");
-		e.setCedula("9874963125");
-		e.setNombre("Neymar");
-		e.setPeso(120.0);
+		List<EstudianteDTO> estudiantes=this.estudianteService.seleccionarTodosDto();
 		
-		//this.estudianteService.agregar(e);
+		System.out.println("*************Lista de estudiantes con consulta DTO*************");
 		
+		for(EstudianteDTO e:estudiantes) {
+			System.out.println(e);
+		}
 		
-		Estudiante bus=this.estudianteService.seleccionarEstudianteDinamico("Sebas", "Arboleda", 100.0);
-		System.out.println(bus);
+		List<MatriculaDTO> matriculas=this.iMatriculaService.seleccionarTodosDto();
+		System.out.println("*************Lista de matriculas con consulta DTO*************");
 		
-		int numeroElminados=this.estudianteService.eliminarPorNombre("Neymar");
-		System.out.println("El numero de elminados es: "+numeroElminados);
+		for(MatriculaDTO m:matriculas) {
+			System.out.println(m);
+		}
 		
+		System.out.println("*************Nombre de hotel*************");
+		Hotel h=this.hotelService.buscar(4);
+		System.out.println("Nombre de hotel: "+h);
 		
-		int numeroActualizados=this.estudianteService.actualizarPorApellido("Jaime", "Rodriguez");
-		System.out.println("El numero de actualizados es: "+numeroActualizados);
+		//this.habitacionService.insertar(hab1);
 		
+		System.out.println("*************Numero de habitaciones*************");
+		List<Habitacion> habitaciones=h.getHabitaciones();
+		for(Habitacion ha:habitaciones) {
+			System.out.println(ha.getNumero());
 		}
 		
 
 	}
-
+}
 
