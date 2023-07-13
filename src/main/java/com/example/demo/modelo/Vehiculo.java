@@ -8,6 +8,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
@@ -41,6 +43,12 @@ public class Vehiculo {
 	
 	@Column(name = "vehi_tipo")
 	private String tipo;
+	
+	@ManyToOne
+	@JoinColumn(name="vehi_id_concesionario")
+	private Concesionario concesionario;
+	
+	
 
 	public Integer getId() {
 		return id;
@@ -104,6 +112,16 @@ public class Vehiculo {
 
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
+	}
+	
+	
+
+	public Concesionario getConcesionario() {
+		return concesionario;
+	}
+
+	public void setConcesionario(Concesionario concesionario) {
+		this.concesionario = concesionario;
 	}
 
 	@Override

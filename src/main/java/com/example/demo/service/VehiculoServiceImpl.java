@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,6 +37,36 @@ public class VehiculoServiceImpl implements IVehiculoService{
 	public Vehiculo seleccionarVehiculoPorFechaColorPlaca(LocalDate fechaFabricacion, String color, String placa) {
 		// TODO Auto-generated method stub
 		return this.iVehiculoRepo.seleccionarVehiculoPorFechaColorPlaca(fechaFabricacion, color, placa);
+	}
+
+	@Override
+	public List<Vehiculo> seleccionarInnerJoin() {
+		// TODO Auto-generated method stub
+		return this.iVehiculoRepo.seleccionarInnerJoin();
+	}
+
+	@Override
+	public List<Vehiculo> seleccionarOuterRightJoin() {
+		// TODO Auto-generated method stub
+		return this.iVehiculoRepo.seleccionarOuterRightJoin();
+	}
+
+	@Override
+	public List<Vehiculo> seleccionarOuterLeftJoin() {
+		// TODO Auto-generated method stub
+		return this.iVehiculoRepo.seleccionarOuterLeftJoin();
+	}
+
+	@Override
+	public List<Vehiculo> seleccionarFullOuterJoin() {
+		// TODO Auto-generated method stub
+		return this.iVehiculoRepo.seleccionarFullOuterJoin();
+	}
+
+	@Override
+	public List<Vehiculo> seleccionarWhereJoin() {
+		// TODO Auto-generated method stub
+		return this.iVehiculoRepo.seleccionarWhereJoin();
 	}
 
 }

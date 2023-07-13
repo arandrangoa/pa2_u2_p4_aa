@@ -1,9 +1,11 @@
 package com.example.demo.repository;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import com.example.demo.modelo.Concesionario;
 import com.example.demo.modelo.Vehiculo;
 
 import jakarta.persistence.EntityManager;
@@ -73,4 +75,42 @@ public class VehiculoRepoImpl implements IVehiculoRepo{
 		return myQueryFinal.getSingleResult();
 	}
 
-}
+	@Override
+	public List<Vehiculo> seleccionarInnerJoin() {
+		// TODO Auto-generated method stub
+		TypedQuery<Vehiculo> myQuery=this.entityManager.createQuery("select v from Concesionario c inner join c.vehiculos v", Vehiculo.class);
+		return myQuery.getResultList();
+	}
+
+	@Override
+	public List<Vehiculo> seleccionarOuterRightJoin() {
+		// TODO Auto-generated method stub
+		TypedQuery<Vehiculo> myQuery=this.entityManager.createQuery("select v from Concesionario c right join c.vehiculos v", Vehiculo.class);
+		return myQuery.getResultList();
+	}
+
+	@Override
+	public List<Vehiculo> seleccionarOuterLeftJoin() {
+		// TODO Auto-generated method stub
+		TypedQuery<Vehiculo> myQuery=this.entityManager.createQuery("select v from Concesionario c left join c.vehiculos v", Vehiculo.class);
+		return myQuery.getResultList();
+	}
+	
+
+	@Override
+	public List<Vehiculo> seleccionarFullOuterJoin() {
+		// TODO Auto-generated method stub
+		TypedQuery<Vehiculo> myQuery=this.entityManager.createQuery("select v from Concesionario c full join c.vehiculos v", Vehiculo.class);
+		return myQuery.getResultList();
+	}
+	
+
+	@Override
+	public List<Vehiculo> seleccionarWhereJoin() {
+		// TODO Auto-generated method stub
+		TypedQuery<Vehiculo> myQuery=this.entityManager.createQuery("select v from Vehiculo v, Concesionario c where c=v.concesionario", Vehiculo.class);
+		return myQuery.getResultList();
+	}
+	}
+
+
