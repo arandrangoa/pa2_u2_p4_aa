@@ -111,6 +111,13 @@ public class VehiculoRepoImpl implements IVehiculoRepo{
 		TypedQuery<Vehiculo> myQuery=this.entityManager.createQuery("select v from Vehiculo v, Concesionario c where c=v.concesionario", Vehiculo.class);
 		return myQuery.getResultList();
 	}
+
+	@Override
+	public List<Vehiculo> seleccionarFetchJoin() {
+		// TODO Auto-generated method stub
+		TypedQuery<Vehiculo> myQuery=this.entityManager.createQuery("select v from Vehiculo v join fetch v.concesionario c", Vehiculo.class);
+		return myQuery.getResultList();
+	}
 	}
 
 

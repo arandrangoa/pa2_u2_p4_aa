@@ -17,5 +17,7 @@ public interface IConcesionarioRepo {
 	public List<Concesionario> seleccionarFullOuterJoin();
 	
 	public List<Concesionario> seleccionarWhereJoin();
+	
+	public List<Concesionario> seleccionarFetchJoin();
 
 }

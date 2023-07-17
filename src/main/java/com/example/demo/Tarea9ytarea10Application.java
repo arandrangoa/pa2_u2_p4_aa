@@ -86,6 +86,17 @@ public class Tarea9ytarea10Application implements CommandLineRunner{
 			System.out.println(v);
 		}
 		
+		System.out.println("***************1-SELECCIONAR FETCH JOIN********************");
+		List<Concesionario> listaConce6=this.concesionarioService.seleccionarFetchJoin();
+		for(Concesionario c:listaConce6) {
+			System.out.println(c);
+		}
+		System.out.println("***************2-SELECCIONAR FETCH JOIN********************");
+		List<Vehiculo> listaVehi7=this.iVehiculoService.seleccionarFetchJoin();
+		for(Vehiculo v:listaVehi7) {
+			System.out.println(v);
+		}
+		
 
 
 	}

@@ -59,4 +59,11 @@ public class ConcesionarioRepoImpl implements IConcesionarioRepo{
 		return myQuery.getResultList();
 	}
 
+	@Override
+	public List<Concesionario> seleccionarFetchJoin() {
+		// TODO Auto-generated method stub
+		TypedQuery<Concesionario> myQuery=this.entityManager.createQuery("select c from Concesionario c join fetch c.vehiculos v", Concesionario.class);
+		return myQuery.getResultList();
+	}
+
 }

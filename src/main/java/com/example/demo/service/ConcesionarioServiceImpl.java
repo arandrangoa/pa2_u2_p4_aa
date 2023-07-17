@@ -50,4 +50,10 @@ public class ConcesionarioServiceImpl implements IConcesionarioService{
 		return this.concesionarioRepo.seleccionarWhereJoin();
 	}
 
+	@Override
+	public List<Concesionario> seleccionarFetchJoin() {
+		// TODO Auto-generated method stub
+		return this.concesionarioRepo.seleccionarFetchJoin();
+	}
+
 }

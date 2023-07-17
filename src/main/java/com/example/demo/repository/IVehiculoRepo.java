@@ -26,4 +26,6 @@ public interface IVehiculoRepo {
 	
 	public List<Vehiculo> seleccionarWhereJoin();
 	
+	public List<Vehiculo> seleccionarFetchJoin();
+	
 }

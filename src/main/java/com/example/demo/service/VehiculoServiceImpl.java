@@ -69,4 +69,10 @@ public class VehiculoServiceImpl implements IVehiculoService{
 		return this.iVehiculoRepo.seleccionarWhereJoin();
 	}
 
+	@Override
+	public List<Vehiculo> seleccionarFetchJoin() {
+		// TODO Auto-generated method stub
+		return this.iVehiculoRepo.seleccionarFetchJoin();
+	}
+
 }
